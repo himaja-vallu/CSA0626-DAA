@@ -1,0 +1,41 @@
+#include <stdio.h>
+
+// Function to compute the Container Loading Problem
+void containerLoading(int items[], int n, int capacity) {
+    int containers = 0;
+    int current_weight = 0;
+    
+    for (int i = 0; i < n; i++) {
+        if (current_weight + items[i] <= capacity) {
+            if(current_weight != 0) {
+                printf(" ");
+            }
+            printf("%d", items[i]);
+            current_weight += items[i];
+        } else {
+            containers++;
+            current_weight = items[i];
+            printf("\n%d", items[i]);
+        }
+    }
+    printf("\nTotal number of containers needed: %d\n", containers + 1);
+}
+
+int main() {
+    int n; // number of items
+    printf("Enter the number of items: ");
+    scanf("%d", &n);
+
+    int items[n]; // array to store the weights of items
+    printf("Enter the weights of the items: ");
+    for (int i = 0; i < n; i++)
+        scanf("%d", &items[i]);
+
+    int capacity; // maximum weight capacity of the containers
+    printf("Enter the maximum weight capacity of the containers: ");
+    scanf("%d", &capacity);
+
+    containerLoading(items, n, capacity);
+
+    return 0;
+}
